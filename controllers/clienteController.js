@@ -1,49 +1,25 @@
-const { Cliente } = require('../models')
+const bcrypt = require('bcrypt');
+const { Cliente } = require('../models');
 
-const cadastrarUsuario = async (req, res) => {
-  try {
-    const { nome, email, senha, endereco, tel } = req.body
-    const novoCliente = await Cliente.create({
-      nome,
-      email,
-      senha,
-      endereco,
-      tel,
-    })
-    res.status(201).json(novoCliente)
-  } catch (error) {
-    res.status(400).json({ error: error.message })
-  }
-}
+exports.createCliente = async (req, res) => {
+    try {
+        const { nome, email, senha, endereco, tel } = req.body;
 
-const logarNoSistema = async (req, res) => {
-  try {
-    const { email, senha } = req.body
-    const cliente = await Cliente.findOne({ where: { email, senha } })
-    if (cliente) {
-      res.status(200).json(cliente)
-    } else {
-      res.status(401).json({ error: 'Email ou senha incorretos' })
+        // Hash da senha
+        const hashedSenha = await bcrypt.hash(senha, 10); // Usando 10 como o custo do hash
+
+        const cliente = await Cliente.create({
+            nome,
+            email,
+            senha: hashedSenha, // Salva a senha hashada no banco de dados
+            endereco,
+            tel
+        });
+
+        res.status(201).json(cliente);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
     }
-  } catch (error) {
-    res.status(400).json({ error: error.message })
-  }
-}
+};
 
-const gerenciarConta = async (req, res) => {
-  try {
-    const { idCliente } = req.params
-    const atualizacoes = req.body
-    await Cliente.update(atualizacoes, { where: { idCliente } })
-    const clienteAtualizado = await Cliente.findByPk(idCliente)
-    res.status(200).json(clienteAtualizado)
-  } catch (error) {
-    res.status(400).json({ error: error.message })
-  }
-}
-
-module.exports = {
-  cadastrarUsuario,
-  logarNoSistema,
-  gerenciarConta,
-}
+// Outros métodos CRUD para Cliente (update, delete, etc.)

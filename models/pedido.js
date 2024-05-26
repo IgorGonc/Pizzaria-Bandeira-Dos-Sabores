@@ -1,34 +1,28 @@
-module.exports = (sequelize, DataTypes) => {
-  const Pedido = sequelize.define(
-    'Pedido',
-    {
-      idPedido: {
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+
+const Pedido = sequelize.define('Pedido', {
+    IdPedido: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
-      },
-      itens: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      status: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      infoEntrega: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      metodoPagamento: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+        autoIncrement: true
     },
-    {
-      tableName: 'pedidos',
-      timestamps: false,
+    Itens: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    Status: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    InfoEntrega: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    MetodoPagamento: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
-  )
+});
 
-  return Pedido
-}
+module.exports = Pedido;

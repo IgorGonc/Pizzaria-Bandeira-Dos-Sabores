@@ -1,26 +1,20 @@
-module.exports = (sequelize, DataTypes) => {
-  const CarrinhoCompra = sequelize.define(
-    'CarrinhoCompra',
-    {
-      idCarrinho: {
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+
+const Carrinho_Compra = sequelize.define('Carrinho_Compra', {
+    IDCarrinho: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
-      },
-      itens: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      total: {
-        type: DataTypes.DOUBLE,
-        allowNull: false,
-      },
+        autoIncrement: true
     },
-    {
-      tableName: 'carrinhos_compra',
-      timestamps: false,
+    Itens: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    Total: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
-  )
+});
 
-  return CarrinhoCompra
-}
+module.exports = Carrinho_Compra;

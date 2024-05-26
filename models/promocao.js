@@ -1,26 +1,20 @@
-module.exports = (sequelize, DataTypes) => {
-  const Promocao = sequelize.define(
-    'Promocao',
-    {
-      idPromocao: {
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+
+const Promocao = sequelize.define('Promocao', {
+    IdPromocao: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
-      },
-      categoria: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      desconto: {
-        type: DataTypes.DOUBLE,
-        allowNull: false,
-      },
+        autoIncrement: true
     },
-    {
-      tableName: 'promocoes',
-      timestamps: false,
+    Categoria: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Desconto: {
+        type: DataTypes.DOUBLE,
+        allowNull: false
     }
-  )
+});
 
-  return Promocao
-}
+module.exports = Promocao;

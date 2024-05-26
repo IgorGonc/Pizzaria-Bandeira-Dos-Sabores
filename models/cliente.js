@@ -1,39 +1,33 @@
-module.exports = (sequelize, DataTypes) => {
-  const Cliente = sequelize.define(
-    'Cliente',
-    {
-      idCliente: {
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+
+const Cliente = sequelize.define('Cliente', {
+    IdCliente: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
-      },
-      nome: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      senha: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      endereco: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      tel: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+        autoIncrement: true
     },
-    {
-      tableName: 'clientes',
-      timestamps: false,
+    Nome: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+    },
+    Senha: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Endereco: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Tel: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
-  )
+});
 
-  return Cliente
-}
+module.exports = Cliente;

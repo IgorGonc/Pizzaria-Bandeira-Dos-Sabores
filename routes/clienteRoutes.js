@@ -1,14 +1,16 @@
-const express = require('express')
-const router = express.Router()
-const clienteController = require('../controllers/clienteController')
+const express = require('express');
+const clienteController = require('../controllers/clienteController');
+const authController = require('../controllers/authController');
 
-// Rota para cadastrar um novo usuário
-router.post('/cadastrar', clienteController.cadastrarUsuario)
+const router = express.Router();
 
-// Rota para fazer login
-router.post('/login', clienteController.logarNoSistema)
+// Rotas para CRUD de Cliente
+router.post('/clientes', clienteController.createCliente);
+router.get('/clientes', clienteController.getClientes);
 
-// Rota para gerenciar a conta do cliente
-router.put('/gerenciar/:idCliente', clienteController.gerenciarConta)
+// Outras rotas CRUD para Cliente (update, delete, etc.)
 
-module.exports = router
+// Rota para lidar com o login de usuários
+router.post('/login', authController.login);
+
+module.exports = router;

@@ -1,34 +1,28 @@
-module.exports = (sequelize, DataTypes) => {
-  const Produto = sequelize.define(
-    'Produto',
-    {
-      idProduto: {
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+
+const Produto = sequelize.define('Produto', {
+    IdProduto: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
-      },
-      nome: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      descricao: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      imagem: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      valor: {
-        type: DataTypes.DOUBLE,
-        allowNull: false,
-      },
+        autoIncrement: true
     },
-    {
-      tableName: 'produtos',
-      timestamps: false,
+    nome: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Descricao: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Imagem: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    Valor: {
+        type: DataTypes.DOUBLE,
+        allowNull: false
     }
-  )
+});
 
-  return Produto
-}
+module.exports = Produto;
