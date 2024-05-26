@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const sequelize = require('./config/database');
 const clienteRoutes = require('./routes/clienteRoutes');
+const produtoRoutes = require('./routes/produtoRoutes');
 
 const app = express();
 const port = 3000;
@@ -12,7 +13,11 @@ app.get('/', (req, res) => {
     res.send('API da Pizzaria Bandeira dos Sabores');
 });
 
-app.use('/api', clienteRoutes);
+// Adicionar as rotas de clientes
+app.use('/api/clientes', clienteRoutes);
+
+// Adicionar as rotas de produtos
+app.use('/api/produtos', produtoRoutes);
 
 // Sincronizar os modelos com o banco de dados
 sequelize.sync()
