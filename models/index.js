@@ -1,6 +1,6 @@
 const sequelize = require('../config/database');
 const Produto = require('./Produto');
-const Carrinho_Compra = require('./Carrinho_Compra');
+const Carrinho_Compra = require('./carrinho_compra');
 const Promocao = require('./Promocao');
 const Pedido = require('./Pedido');
 const Cliente = require('./Cliente');
@@ -9,8 +9,9 @@ const Cliente = require('./Cliente');
 Carrinho_Compra.belongsTo(Cliente, { foreignKey: 'IDCliente' });
 Cliente.hasMany(Carrinho_Compra, { foreignKey: 'IDCliente' });
 
-Carrinho_Compra.belongsToMany(Produto, { through: 'Itens', foreignKey: 'IDCarrinho' });
-Produto.belongsToMany(Carrinho_Compra, { through: 'Itens', foreignKey: 'IDProduto' });
+// Define uma associação com alias 'ItensCarrinho' para evitar duplicatas
+Carrinho_Compra.belongsToMany(Produto, { through: 'ItensCarrinho', foreignKey: 'IDCarrinho' });
+Produto.belongsToMany(Carrinho_Compra, { through: 'ItensCarrinho', foreignKey: 'IDProduto' });
 
 Pedido.belongsTo(Cliente, { foreignKey: 'IDCliente' });
 Cliente.hasMany(Pedido, { foreignKey: 'IDCliente' });
