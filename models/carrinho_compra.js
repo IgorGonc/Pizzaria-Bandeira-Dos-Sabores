@@ -1,3 +1,4 @@
+// models/carrinho_compra.js
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/database')
 const Cliente = require('./Cliente')
@@ -29,7 +30,6 @@ const Carrinho_Compra = sequelize.define(
   }
 )
 
-// Definir a associação
 Carrinho_Compra.belongsTo(Cliente, { foreignKey: 'IDCliente' })
 
 module.exports = Carrinho_Compra

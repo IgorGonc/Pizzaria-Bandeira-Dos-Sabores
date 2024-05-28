@@ -1,4 +1,3 @@
-// models/Itens.js
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/database')
 const Carrinho_Compra = require('./carrinho_compra')
@@ -10,18 +9,20 @@ const Itens = sequelize.define(
     IDCarrinho: {
       type: DataTypes.INTEGER,
       references: {
-        model: Carrinho_Compra, // Referenciando o modelo Carrinho_Compra corretamente
+        model: Carrinho_Compra,
         key: 'IDCarrinho',
       },
       allowNull: false,
+      primaryKey: true,
     },
     IDProduto: {
       type: DataTypes.INTEGER,
       references: {
-        model: Produto, // Referenciando o modelo Produto corretamente
+        model: Produto,
         key: 'IDProduto',
       },
       allowNull: false,
+      primaryKey: true,
     },
     Quantidade: {
       type: DataTypes.INTEGER,
@@ -33,5 +34,11 @@ const Itens = sequelize.define(
     timestamps: false,
   }
 )
+
+Carrinho_Compra.hasMany(Itens, { foreignKey: 'IDCarrinho' })
+Itens.belongsTo(Carrinho_Compra, { foreignKey: 'IDCarrinho' })
+
+Produto.hasMany(Itens, { foreignKey: 'IDProduto' })
+Itens.belongsTo(Produto, { foreignKey: 'IDProduto' })
 
 module.exports = Itens
