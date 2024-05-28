@@ -4,7 +4,7 @@ const Carrinho_Compra = require('./carrinho_compra')
 const Promocao = require('./Promocao')
 const Pedido = require('./pedido')
 const Cliente = require('./Cliente')
-const Itens = require('./Itens')
+const Itens = require('./itens')
 
 // Definir relacionamentos
 Carrinho_Compra.belongsTo(Cliente, { foreignKey: 'IDCliente' })

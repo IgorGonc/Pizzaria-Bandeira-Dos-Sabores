@@ -5,14 +5,12 @@ const clienteRoutes = require('./routes/clienteRoutes')
 const produtoRoutes = require('./routes/produtoRoutes')
 const carrinhoRoutes = require('./routes/carrinhoRoutes')
 const pedidoRoutes = require('./routes/pedidoRoutes')
-const promocaoRoutes = require('./routes/promocaoRoutes')
 
 const Cliente = require('./models/Cliente')
 const Produto = require('./models/Produto')
 const Carrinho_Compra = require('./models/carrinho_compra')
-const Itens = require('./models/Itens')
+const Itens = require('./models/itens')
 const Pedido = require('./models/pedido') // Certifique-se de importar o modelo de Pedido
-const Promocao = require('./models/Promocao')
 
 const app = express()
 const port = 3000
@@ -27,7 +25,6 @@ app.use('/api/clientes', clienteRoutes)
 app.use('/api/produtos', produtoRoutes)
 app.use('/api/carrinho', carrinhoRoutes)
 app.use('/api/pedido', pedidoRoutes)
-app.use('/api/promocao', promocaoRoutes)
 
 // Sincronizar os modelos na ordem correta
 sequelize

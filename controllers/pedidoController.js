@@ -2,7 +2,7 @@
 const Pedido = require('../models/pedido')
 const Carrinho_Compra = require('../models/carrinho_compra')
 const Cliente = require('../models/Cliente')
-const Itens = require('../models/Itens')
+const Itens = require('../models/itens')
 const Produto = require('../models/Produto')
 
 exports.finalizarCompra = async (req, res) => {
