@@ -2,7 +2,7 @@ const sequelize = require('../config/database')
 const Produto = require('./Produto')
 const Carrinho_Compra = require('./carrinho_compra')
 const Promocao = require('./Promocao')
-const Pedido = require('./Pedido')
+const Pedido = require('./pedido')
 const Cliente = require('./Cliente')
 const Itens = require('./Itens')
 

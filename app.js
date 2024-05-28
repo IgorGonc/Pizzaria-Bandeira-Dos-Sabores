@@ -10,6 +10,7 @@ const Cliente = require('./models/Cliente')
 const Produto = require('./models/Produto')
 const Carrinho_Compra = require('./models/carrinho_compra')
 const Itens = require('./models/Itens')
+const Pedido = require('./models/pedido') // Certifique-se de importar o modelo de Pedido
 
 const app = express()
 const port = 3000

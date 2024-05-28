@@ -1,4 +1,5 @@
-const Pedido = require('../models/Pedido')
+// controllers/pedidoController.js
+const Pedido = require('../models/pedido')
 const Carrinho_Compra = require('../models/carrinho_compra')
 const Cliente = require('../models/Cliente')
 const Itens = require('../models/Itens')
@@ -27,8 +28,6 @@ exports.finalizarCompra = async (req, res) => {
       return res.status(404).json({ error: 'Carrinho não encontrado' })
     }
 
-    console.log(`Carrinho encontrado: ${JSON.stringify(carrinho)}`)
-
     if (!carrinho.Itens || carrinho.Itens.length === 0) {
       return res.status(400).json({ error: 'Carrinho de compras vazio' })
     }
@@ -48,10 +47,64 @@ exports.finalizarCompra = async (req, res) => {
       MetodoPagamento,
       EnderecoEntrega,
       ValorTotal: valorTotal,
+      Status: 'Pendente', // Adiciona o status inicial do pedido
     })
 
     // Retornar a confirmação do pedido
     res.status(201).json(novoPedido)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: error.message })
+  }
+}
+
+// Função para visualizar os pedidos do cliente
+exports.visualizarPedidos = async (req, res) => {
+  const { IDCliente } = req.params
+
+  try {
+    const pedidos = await Pedido.findAll({
+      where: { IDCliente },
+      include: [
+        {
+          model: Carrinho_Compra,
+          include: {
+            model: Itens,
+            include: {
+              model: Produto,
+            },
+          },
+        },
+      ],
+    })
+
+    if (!pedidos.length) {
+      return res
+        .status(404)
+        .json({ error: 'Nenhum pedido encontrado para este cliente' })
+    }
+
+    res.status(200).json(pedidos)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: error.message })
+  }
+}
+
+// Função para atualizar o status do pedido
+exports.atualizarStatusPedido = async (req, res) => {
+  const { IDPedido, Status } = req.body
+
+  try {
+    const pedido = await Pedido.findByPk(IDPedido)
+    if (!pedido) {
+      return res.status(404).json({ error: 'Pedido não encontrado' })
+    }
+
+    pedido.Status = Status
+    await pedido.save()
+
+    res.status(200).json({ message: 'Status do pedido atualizado com sucesso' })
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: error.message })

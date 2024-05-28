@@ -40,6 +40,11 @@ const Pedido = sequelize.define(
       type: DataTypes.DOUBLE,
       allowNull: false,
     },
+    Status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'Pendente',
+    },
   },
   {
     tableName: 'Pedido',
