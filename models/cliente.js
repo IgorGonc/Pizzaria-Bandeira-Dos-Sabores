@@ -1,39 +1,40 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const { DataTypes } = require('sequelize')
+const sequelize = require('../config/database')
 
-const Cliente = sequelize.define('Cliente', {
+const Cliente = sequelize.define(
+  'Cliente',
+  {
     IdCliente: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
     Nome: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     Email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
     },
     Senha: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     Endereco: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     Tel: {
-        type: DataTypes.STRING,
-        allowNull: false
-    }
-}
-, {
-    tableName: 'Clientes',  // Aqui, o nome da tabela é 'Clientes'
-    timestamps: false
-}
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    tableName: 'Clientes',
+    timestamps: true, // Habilita os campos createdAt e updatedAt
+  }
+)
 
-);
-
-module.exports = Cliente;
+module.exports = Cliente

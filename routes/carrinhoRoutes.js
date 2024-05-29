@@ -11,6 +11,4 @@ router.get('/visualizar/:IDCliente', carrinhoController.visualizarCarrinho)
 // Rota para remover carrinho
 router.post('/remover', carrinhoController.removerDoCarrinho)
 
-router.post('/carrinho/aplicar-promocao', promocaoController.aplicarPromocao);
-
 module.exports = router
