@@ -13,6 +13,7 @@ const Carrinho_Compra = sequelize.define(
     },
     IDCliente: {
       type: DataTypes.INTEGER,
+      allowNull: true, // Permite que seja nulo
       references: {
         model: Cliente,
         key: 'IDCliente',
@@ -26,7 +27,7 @@ const Carrinho_Compra = sequelize.define(
   },
   {
     tableName: 'Carrinho_Compra',
-    timestamps: false,
+    timestamps: true, // Habilita os campos createdAt e updatedAt
   }
 )
 

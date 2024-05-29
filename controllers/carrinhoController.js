@@ -1,6 +1,7 @@
 const Carrinho_Compra = require('../models/carrinho_compra')
 const Itens = require('../models/itens')
 const Produto = require('../models/Produto')
+const Cliente = require('../models/Cliente') // Certifique-se de importar o modelo Cliente
 
 exports.adicionarAoCarrinho = async (req, res) => {
   const { IDCarrinho, itens, IDCliente } = req.body
@@ -14,8 +15,17 @@ exports.adicionarAoCarrinho = async (req, res) => {
 
     // Se o carrinho não existir, crie um novo carrinho
     if (!carrinho) {
+      // Verifique se o IDCliente é válido
+      let cliente = null
+      if (IDCliente) {
+        cliente = await Cliente.findByPk(IDCliente)
+        if (!cliente) {
+          return res.status(400).json({ error: 'IDCliente inválido' })
+        }
+      }
+
       carrinho = await Carrinho_Compra.create({
-        IDCliente: IDCliente || null, // Utilize o IDCliente se fornecido, senão use null
+        IDCliente: cliente ? cliente.IdCliente : null, // Use o IDCliente se válido, caso contrário, null
         Total: 0,
       })
     }
