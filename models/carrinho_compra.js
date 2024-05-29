@@ -27,7 +27,7 @@ const Carrinho_Compra = sequelize.define(
   },
   {
     tableName: 'Carrinho_Compra',
-    timestamps: true, // Habilita os campos createdAt e updatedAt
+    timestamps: false,
   }
 )
 
