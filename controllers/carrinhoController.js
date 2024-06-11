@@ -1,7 +1,7 @@
 const Carrinho_Compra = require('../models/carrinho_compra')
 const Itens = require('../models/itens')
 const Produto = require('../models/Produto')
-const Cliente = require('../models/Cliente') // Certifique-se de importar o modelo Cliente
+const Cliente = require('../models/cliente') // Certifique-se de importar o modelo Cliente
 
 exports.adicionarAoCarrinho = async (req, res) => {
   const { IDCarrinho, itens, IDCliente } = req.body
@@ -51,12 +51,10 @@ exports.adicionarAoCarrinho = async (req, res) => {
       }
     }
 
-    res
-      .status(201)
-      .json({
-        message: 'Itens adicionados ao carrinho com sucesso',
-        IDCarrinho: carrinho.IDCarrinho,
-      })
+    res.status(201).json({
+      message: 'Itens adicionados ao carrinho com sucesso',
+      IDCarrinho: carrinho.IDCarrinho,
+    })
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: error.message })

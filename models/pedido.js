@@ -1,7 +1,7 @@
 // models/Pedido.js
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/database')
-const Cliente = require('./Cliente')
+const Cliente = require('./cliente')
 const Carrinho_Compra = require('./carrinho_compra')
 
 const Pedido = sequelize.define(

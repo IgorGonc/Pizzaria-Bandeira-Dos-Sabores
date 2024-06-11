@@ -3,7 +3,7 @@ const Produto = require('./Produto')
 const Carrinho_Compra = require('./carrinho_compra')
 const Promocao = require('./Promocao')
 const Pedido = require('./pedido')
-const Cliente = require('./Cliente')
+const Cliente = require('./cliente')
 const Itens = require('./itens')
 
 // Definir relacionamentos

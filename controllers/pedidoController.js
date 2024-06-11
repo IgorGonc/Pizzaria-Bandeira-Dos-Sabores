@@ -1,7 +1,7 @@
 // controllers/pedidoController.js
 const Pedido = require('../models/pedido')
 const Carrinho_Compra = require('../models/carrinho_compra')
-const Cliente = require('../models/Cliente')
+const Cliente = require('../models/cliente')
 const Itens = require('../models/itens')
 const Produto = require('../models/Produto')
 

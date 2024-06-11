@@ -6,7 +6,7 @@ const produtoRoutes = require('./routes/produtoRoutes')
 const carrinhoRoutes = require('./routes/carrinhoRoutes')
 const pedidoRoutes = require('./routes/pedidoRoutes')
 
-const Cliente = require('./models/Cliente')
+const Cliente = require('./models/cliente')
 const Produto = require('./models/Produto')
 const Carrinho_Compra = require('./models/carrinho_compra')
 const Itens = require('./models/itens')
